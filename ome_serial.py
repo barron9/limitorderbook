@@ -341,7 +341,7 @@ def remove_from_book(order):
 
     for entry in book:
         if entry.order_id == order.order_id:
-            discard = entryask
+            discard = entry
             break
 
     book.remove(discard)
