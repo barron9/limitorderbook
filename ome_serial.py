@@ -42,8 +42,8 @@ def launch_gui():
     window.geometry("870x470")
 
     fills_frame = ttk.LabelFrame(window, text="Filled orders")
-    bid_frame = ttk.LabelFrame(window, text="Bids")
-    ask_frame = ttk.LabelFrame(window, text="Offers")
+    bid_frame = ttk.LabelFrame(window, text="Bid")
+    ask_frame = ttk.LabelFrame(window, text="Ask")
 
     window.columnconfigure(0, weight=1)
     window.columnconfigure(1, weight=1)
@@ -94,9 +94,9 @@ def sample():
     bid = None
     global eq_price
     eq_price = 200  # further development: periodically change this
-    std_dev = 25
+    std_dev = 10
     # further development: include a method of catching 0 or negative values
-    price = round(random.normalvariate(eq_price, std_dev), 2)
+    price = round(round(random.normalvariate(eq_price, std_dev) / 0.05) * 0.05,2) # round to nearest 0.05
 
     if price > eq_price:
         if price > (eq_price + (0.1 * std_dev)):
@@ -341,7 +341,7 @@ def remove_from_book(order):
 
     for entry in book:
         if entry.order_id == order.order_id:
-            discard = entry
+            discard = entryask
             break
 
     book.remove(discard)
